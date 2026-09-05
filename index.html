@@ -8,12 +8,13 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@700&family=IBM+Plex+Sans:wght@400;500&display=swap" rel="stylesheet">
+<link rel="icon" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCI+PHJlY3Qgd2lkdGg9IjI0IiBoZWlnaHQ9IjI0IiByeD0iNiIgZmlsbD0iI2E4NDgwZCIgLz48ZyB0cmFuc2Zvcm09InRyYW5zbGF0ZSg0LDQpIHNjYWxlKDAuNjY3KSIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjZWVmMWYzIiBzdHJva2Utd2lkdGg9IjIuNiIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIj48cGF0aCBkPSJtMTUgMTItOS4zNzMgOS4zNzNhMSAxIDAgMCAxLTMuMDAxLTNMMTIgOSIgLz48cGF0aCBkPSJtMTggMTUgNC00IiAvPjxwYXRoIGQ9Im0yMS41IDExLjUtMS45MTQtMS45MTRBMiAyIDAgMCAxIDE5IDguMTcydi0uMzQ0YTIgMiAwIDAgMC0uNTg2LTEuNDE0bC0xLjY1Ny0xLjY1N0E2IDYgMCAwIDAgMTIuNTE2IDNIOWwxLjI0MyAxLjI0M0E2IDYgMCAwIDEgMTIgOC40ODVWMTBsMiAyaDEuMTcyYTIgMiAwIDAgMSAxLjQxNC41ODZMMTguNSAxNC41IiAvPjwvZz48L3N2Zz4=">
 <style>
   :root {
     --bg: #eef1f3;
     --ink: #1c2226;
     --muted: #5c6870;
-    --accent: #d9661c;
+    --accent: #a8480d;
     --line: #d7dee2;
     --bg-alt: color-mix(in srgb, var(--bg) 85%, var(--ink) 15%);
   }
@@ -50,6 +51,7 @@
     border-bottom: 1px solid var(--line);
   }
   .nav .inner {
+    position: relative;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -72,6 +74,24 @@
     opacity: 0.75;
   }
   .nav-links a:hover { opacity: 1; }
+
+  .nav-toggle {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    gap: 5px;
+    background: none;
+    border: none;
+    padding: 0.5rem;
+    margin: -0.5rem;
+    cursor: pointer;
+  }
+  .nav-toggle span {
+    display: block;
+    width: 22px;
+    height: 2px;
+    background: var(--ink);
+  }
 
   section { scroll-margin-top: 4.5rem; }
 
@@ -157,9 +177,32 @@
     text-align: center;
   }
 
-  @media (max-width: 560px) {
-    .nav-links { gap: 1rem; }
-    .nav-links a { font-size: 0.8rem; }
+  @media (max-width: 680px) {
+    .nav-toggle { display: flex; }
+    .nav-links {
+      display: none;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      right: 0;
+      flex-direction: column;
+      gap: 0;
+      background: var(--bg);
+      border-bottom: 1px solid var(--line);
+      padding: 0.25rem 1.5rem 0.75rem;
+    }
+    .nav-links.open { display: flex; }
+    .nav-links a {
+      padding: 0.85rem 0;
+      border-bottom: 1px solid var(--line);
+      font-size: 1rem;
+      opacity: 1;
+    }
+    .nav-links a:last-child { border-bottom: none; }
+
+    .hero { padding: 3.5rem 0 3rem; }
+    .band { padding: 3rem 0; }
+    h1 { max-width: none; }
   }
 
   
@@ -176,7 +219,10 @@
   <header class="nav">
     <div class="inner">
       <span class="brand">Lövängen Snickeri AB</span>
-      <nav class="nav-links">
+      <button class="nav-toggle" id="nav-toggle" aria-label="Meny" aria-expanded="false" aria-controls="nav-links">
+        <span></span><span></span><span></span>
+      </button>
+      <nav class="nav-links" id="nav-links">
         <a href="#tjanster">Tjänster</a>
         <a href="#om-oss">Om oss</a>
         <a href="#kontakt">Kontakt</a>
@@ -198,9 +244,9 @@
       <h2>Vad vi gör</h2>
       <div class="cards">
           <div class="card"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="22" height="22" aria-hidden="true"><path d="m15 12-9.373 9.373a1 1 0 0 1-3.001-3L12 9" /><path d="m18 15 4-4" /><path d="m21.5 11.5-1.914-1.914A2 2 0 0 1 19 8.172v-.344a2 2 0 0 0-.586-1.414l-1.657-1.657A6 6 0 0 0 12.516 3H9l1.243 1.243A6 6 0 0 1 12 8.485V10l2 2h1.172a2 2 0 0 1 1.414.586L18.5 14.5" /></svg><span>Tillverkning av fönster och dörrar</span></div>
-          <div class="card"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="22" height="22" aria-hidden="true"><path d="M15.707 21.293a1 1 0 0 1-1.414 0l-1.586-1.586a1 1 0 0 1 0-1.414l5.586-5.586a1 1 0 0 1 1.414 0l1.586 1.586a1 1 0 0 1 0 1.414z" /><path d="m18 13-1.375-6.874a1 1 0 0 0-.746-.776L3.235 2.028a1 1 0 0 0-1.207 1.207L5.35 15.879a1 1 0 0 0 .776.746L13 18" /><path d="m2.3 2.3 7.286 7.286" /><circle cx="11" cy="11" r="2" /></svg><span>Specialbeställda snickerier</span></div>
-          <div class="card"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="22" height="22" aria-hidden="true"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.106-3.105c.32-.322.863-.22.983.218a6 6 0 0 1-8.259 7.057l-7.91 7.91a1 1 0 0 1-2.999-3l7.91-7.91a6 6 0 0 1 7.057-8.259c.438.12.54.662.219.984z" /></svg><span>Trappor och listverk</span></div>
-          <div class="card"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="22" height="22" aria-hidden="true"><path d="M14 18V6a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v11a1 1 0 0 0 1 1h2" /><path d="M15 18H9" /><path d="M19 18h2a1 1 0 0 0 1-1v-3.65a1 1 0 0 0-.22-.624l-3.48-4.35A1 1 0 0 0 17.52 8H14" /><circle cx="17" cy="18" r="2" /><circle cx="7" cy="18" r="2" /></svg><span>Leverans till byggarbetsplats</span></div>
+          <div class="card"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="22" height="22" aria-hidden="true"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.106-3.105c.32-.322.863-.22.983.218a6 6 0 0 1-8.259 7.057l-7.91 7.91a1 1 0 0 1-2.999-3l7.91-7.91a6 6 0 0 1 7.057-8.259c.438.12.54.662.219.984z" /></svg><span>Anpassade snickerilösningar</span></div>
+          <div class="card"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="22" height="22" aria-hidden="true"><path d="M14 18V6a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v11a1 1 0 0 0 1 1h2" /><path d="M15 18H9" /><path d="M19 18h2a1 1 0 0 0 1-1v-3.65a1 1 0 0 0-.22-.624l-3.48-4.35A1 1 0 0 0 17.52 8H14" /><circle cx="17" cy="18" r="2" /><circle cx="7" cy="18" r="2" /></svg><span>Leverans till byggarbetsplatser</span></div>
+          <div class="card"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="22" height="22" aria-hidden="true"><circle cx="12" cy="12" r="10" /><path d="m16 9-5.5 5.5L8 12" /></svg><span>Offert efter ritning eller mått</span></div>
       </div>
     </div>
   </section>
@@ -208,7 +254,7 @@
   <section id="om-oss" class="band">
     <div class="inner">
       <h2>Om oss</h2>
-      <p>Vi tillverkar snickerier till byggnader, från ritning till färdig produkt. Vi jobbar mot både privatpersoner och företag som behöver skräddarsydda lösningar i trä. Hör av dig så pratar vi om vad du behöver.</p>
+      <p>Vi tillverkar snickerier till bygg- och renoveringsprojekt. Med fokus på kvalitet och hantverk skräddarsyr vi lösningar efter kundens behov. Hör av dig om du har ett projekt på gång.</p>
     </div>
   </section>
 
@@ -223,5 +269,22 @@
   <footer>
     Lövängen Snickeri AB · Org.nr 5599876543
   </footer>
+
+  <script>
+    (function () {
+      var toggle = document.getElementById('nav-toggle');
+      var links = document.getElementById('nav-links');
+      toggle.addEventListener('click', function () {
+        var open = links.classList.toggle('open');
+        toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+      });
+      links.querySelectorAll('a').forEach(function (a) {
+        a.addEventListener('click', function () {
+          links.classList.remove('open');
+          toggle.setAttribute('aria-expanded', 'false');
+        });
+      });
+    })();
+  </script>
 </body>
 </html>
