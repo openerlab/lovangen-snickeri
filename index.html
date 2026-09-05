@@ -55,14 +55,9 @@
     padding: 2rem 0;
     border-top: 1px solid var(--line);
   }
-  /* Inverted-pyramid taper: each section narrows and centers a bit more
-     than the last, so the page visually funnels toward a single, isolated
-     CTA at the end — one destination, not a menu of competing choices. */
-  section:nth-of-type(1) { max-width: 620px; }
-  section:nth-of-type(2) { max-width: 500px; margin-left: auto; margin-right: auto; }
+  /* Choice architecture: the CTA is the one action on the page, so it gets
+     isolation and visual weight instead of competing with a section label. */
   section:nth-of-type(3) {
-    max-width: 360px;
-    margin: 2rem auto 0;
     text-align: center;
     border-top: none;
     padding-top: 0;
@@ -140,27 +135,27 @@
     <header>
       <div class="eyebrow">Halmstad</div>
       <h1>Lövängen Snickeri AB</h1>
-      <p class="tagline">Tillverkning av byggnadssnickerier i Halmstad</p>
+      <p class="tagline">Byggnadssnickerier tillverkade i Halmstad</p>
     </header>
-
-    <section>
-      <h2>Om oss</h2>
-      <p>Vi tillverkar snickerier till byggnationer, både nyproduktion och renovering. Arbetet sker efter mått och önskemål från kund. Hör av dig om du har ett projekt du vill diskutera.</p>
-    </section>
 
     <section>
       <h2>Vad vi gör</h2>
       <ul>
-            <li>Fönster och fönsterpartier</li>
-            <li>Dörrar och dörrkarmar</li>
-            <li>Trappor</li>
-            <li>Måttbeställda snickerier</li>
+            <li>Fönster och dörrar</li>
+            <li>Trappor och räcken</li>
+            <li>Köksluckor och inredningssnickerier</li>
+            <li>Måttanpassade byggnadssnickerier</li>
       </ul>
     </section>
 
     <section>
+      <h2>Om oss</h2>
+      <p>Vi tillverkar snickerier till hus och fastigheter, anpassade efter det som behövs i varje projekt. Jobbar du med byggnation eller renovering kan vi ta fram lösningar i trä efter mått och ritning. Hör av dig så pratar vi om vad du behöver.</p>
+    </section>
+
+    <section>
       <h2>Kontakt</h2>
-      <p>Hör av dig för offert</p>
+      <p>Kontakta oss för offert</p>
       <a class="cta" href="mailto:info@example.se">Kontakta oss</a>
     </section>
 
